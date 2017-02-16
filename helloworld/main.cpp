@@ -15,7 +15,7 @@ int main(int argc, char** argv)
         res->end();
     });
 
-    if (!server.listen(QHostAddress::Any, 5000)) {
+    if (!server.listen(QHostAddress::LocalHost, 5000)) {
         qDebug() << "Failed to start server";
         exit(1);
     }

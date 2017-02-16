@@ -15,7 +15,7 @@ class Demo
 class MyController : public Controller
 {
     Q_OBJECT
-    FLUGS_BASE(/ root / bar)
+    FLUGS_BASE(/root/bar)
 
 public:
     explicit MyController(QObject* parent = nullptr)
@@ -24,24 +24,24 @@ public:
         setBasePath(QStringLiteral("/foo/bar/"));
     }
 
-    FLUGS_MAP(root, GET POST / root)
+    FLUGS_MAP(root, GET POST /root)
     void root()
     {
     }
 
-    FLUGS_MAP(getPerson, GET / person / : id)
+    FLUGS_MAP(getPerson, GET /person/:id)
     QString getPerson(const QString& id) const
     {
         return QString();
     }
 
-    FLUGS_MAP(getDemo, GET / demo / : id)
+    FLUGS_MAP(getDemo, GET /demo/:id)
     Demo getDemo(const Demo& id) const
     {
         return Demo();
     }
 
-    FLUGS_MAP(getDemo, POST / demo /)
+    FLUGS_MAP(getDemo, POST /demo)
     Demo getDemo(const BodyParam<Demo>& demo) const
     {
         return Demo();
@@ -56,7 +56,7 @@ int main(int argc, char** argv)
 
     mux.addController(new MyController);
 
-    if (!server.listen(QHostAddress::Any, 5000)) {
+    if (!server.listen(QHostAddress::LocalHost, 5000)) {
         qDebug() << "Failed to start server";
         exit(1);
     }
